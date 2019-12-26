@@ -1,0 +1,52 @@
+.register-container {
+    width: 40%;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #FFFFFF;
+    box-shadow: 2px 2px 2px #B2B2B2;
+    overflow: hidden;
+}
+
+.register-title {
+    font-size: 35px;
+    color: #294D8C;
+    font-family: Arial;
+}
+
+.register-form-container {
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+}
+
+@media only screen and (max-device-width: 992px){
+    .register-container {
+        width: 100%;
+        background-color: transparent;
+        color: #FFFFFF;
+        box-shadow: none;
+    }
+
+    .register-title {
+        font-size: 35px;
+        color: #FFFFFF;
+    }
+
+    .register-form-container {
+        width: 80%;
+    }
+
+}
+
+@media screen and (max-width: 600px) {
+    .register-form-container {
+        width: 95%;
+    }
+
+}

@@ -1,0 +1,12 @@
+.list-container {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin-top: 1.2em;
+}
+
+@media only screen and (max-device-width: 992px) {
+    .list-container {
+        width: 100%;
+    }
+}

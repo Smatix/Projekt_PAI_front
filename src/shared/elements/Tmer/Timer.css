@@ -1,0 +1,13 @@
+.timer-container {
+    height: 2.5em;
+    width: 2.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #3f99f3;
+    border-radius: 50%;
+}
+
+.timer-digits {
+    font-size: 0.6em;
+}

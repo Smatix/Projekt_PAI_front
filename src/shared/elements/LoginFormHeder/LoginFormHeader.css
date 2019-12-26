@@ -1,0 +1,26 @@
+.login-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    width: 100%;
+    border-radius: 15px;
+    background-color: #009FEF;
+    color: #FFFFFF;
+}
+
+.logo-text {
+    font-family: "Lucida Fax";
+    font-size: 40px;
+}
+
+@media only screen and (max-device-width: 992px){
+    .login-header {
+        margin-top: 20px;
+        background-color: transparent;
+    }
+
+    .logo-text {
+        font-size: 35px;
+    }
+}

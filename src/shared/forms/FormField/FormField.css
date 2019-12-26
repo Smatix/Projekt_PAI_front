@@ -1,0 +1,33 @@
+.form-field-container {
+    width: 100%;
+    font-size: 12px;
+    margin: 0.5em;
+    color: #294D8C;
+}
+
+.form-field {
+    box-sizing:border-box;
+    width: 100%;
+    border: 1px solid #294D8C;
+    border-radius: 10px;
+    line-height: 1.2em;
+    padding: 0.5em 0.2em;
+    color: #294D8C;
+}
+
+.form-field-container label {
+    font-family: "Arial";
+    font-weight: bold;
+    font-size: 1em;
+}
+
+::placeholder {
+    color: #294D8C;
+}
+
+
+@media only screen and (max-device-width: 992px) {
+    .form-field-container label {
+        color: #FFFFFF;
+    }
+}

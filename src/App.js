@@ -1,22 +1,17 @@
-import React from 'react';
+import React, { Component } from "react";
+// import Login from "./components/Login/Login";
+import "./App.css"
+import Register from "./components/Register/Register";
+import Login from "./components/Login/Login";
+import Page from "./components/Page/Page";
 
-class App extends React.Component{
+class App extends Component {
 
-  getData() {
-      fetch("http://localhost/zaparkujfure/pai_backend/public/index.php/home")
-          .then(resp => resp.json())
-          .then(resp => {
-              console.log(resp)
-          })
-  }
-  render() {
-      this.getData();
-      return (
-        <div>
-            Hello World
-        </div>
-      )
-  };
+    render() {
+        return (
+            <Page/>
+        );
+    }
 }
 
 export default App;
