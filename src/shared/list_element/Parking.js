@@ -8,7 +8,7 @@ import PopUp from "../elements/PopUp/PopUp";
 class Parking extends Component {
 
     render() {
-        const {name, number, street, city, rate, car, price, pick} = this.props.element;
+        const {name, number, street, city, rate, pick, priceList} = this.props.element;
         return (
             <div
                 className="list-element-container"
@@ -18,17 +18,25 @@ class Parking extends Component {
             >
                 <div>
                     <div style={{fontSize: '0.7em'}}>{name}</div>
-                    <div style={{fontSize: '0.4em'}}>{`ul ${street} ${number}`}</div>
+                    <div style={{fontSize: '0.4em'}}>{`ul ${street} ${number}, ${city}`}</div>
                     <div style={{fontSize: '0.3em'}}>
                         <StarRate rate={rate}/>
                     </div>
                     <div style={{display: 'flex', fontSize: '0.6em'}}>
                         <i className="fas fa-car"></i>
-                        {`  ${car} - ${price} zł/h`}
+                        {priceList.map(el => {
+                            if (el.type === "car") {
+                                return `${el.price} zł/${el.period}${el.unit}`
+                            }
+                        })}
                     </div>
                     <div style={{display: 'flex', fontSize: '0.6em'}}>
                         <i className="fas fa-motorcycle"></i>
-                        {`  5 - 1 zł/h`}
+                        {priceList.map(el => {
+                            if (el.type === "motorbike") {
+                                return `${el.price} zł/${el.period}${el.unit}`
+                            }
+                        })}
                     </div>
                 </div>
                 <PrimaryBtn
