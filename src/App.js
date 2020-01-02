@@ -32,6 +32,7 @@ class App extends Component {
                         <ProtectedRoute
                             path="/user"
                             component={UserPage}
+                            role="ROLE_USER"
                         />
                         <Route path="/register" exact>
                             <Register/>
