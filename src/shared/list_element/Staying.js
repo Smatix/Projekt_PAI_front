@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import "./ListElement.css"
-import Timer from "../elements/Tmer/Timer";
+import InvoiceBtn from "../buttons/SquareBtns/InvoiceBtn";
+import TrashBtn from "../buttons/SquareBtns/TrashBtn";
 
-class Reservation extends Component {
+class Staying extends Component {
 
     render() {
         return (
@@ -11,10 +12,13 @@ class Reservation extends Component {
                     <div>{this.props.name}</div>
                     <div style={{fontSize: '0.5em'}}>{this.props.email}</div>
                 </div>
-                <Timer time={this.props.time}/>
+                <div className="buttons-container">
+                    <InvoiceBtn/>
+                    <TrashBtn/>
+                </div>
             </div>
         );
     }
 }
 
-export default Reservation;
+export default Staying;

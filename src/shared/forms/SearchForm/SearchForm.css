@@ -1,11 +1,12 @@
-.form-field-container {
+.search-container {
+    box-sizing:border-box;
+    position: relative;
     width: 100%;
     font-size: 12px;
-    margin: 0.5em;
     color: #294D8C;
 }
 
-.form-field {
+.search-field {
     box-sizing:border-box;
     width: 100%;
     border: 1px solid #294D8C;
@@ -15,18 +16,19 @@
     color: #294D8C;
 }
 
-.form-field-container label {
-    font-family: "Arial";
-    font-weight: bold;
-    font-size: 1em;
-}
-
 ::placeholder {
     color: #294D8C;
 }
 
-.error-msg {
-    color: red;
+.search-container i {
+    font-size: 1.4em;
+    position: absolute;
+    right: 7px;
+    top: 0.5em;
+}
+
+.search-container i:hover {
+    cursor: pointer;
 }
 
 @media only screen and (max-device-width: 992px) {

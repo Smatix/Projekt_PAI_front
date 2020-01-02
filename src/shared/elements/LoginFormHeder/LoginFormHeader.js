@@ -6,7 +6,7 @@ class LoginFormHeader extends Component {
     render() {
         return (
             <div className="login-header">
-                <div className="logo-text">Zaparkuj fury</div>
+                <div className="logo-text">Zaparkuj Auto</div>
             </div>
         );
     }

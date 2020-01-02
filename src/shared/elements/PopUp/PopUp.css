@@ -1,0 +1,28 @@
+.popup {
+    position: fixed;
+    left: 35%;
+    top: 15%;
+    width: 400px;
+    min-height: 400px;
+    padding: 20px;
+    border: 1px solid #595959;
+    border-radius: 5px;
+    background-color: rgb(241,241,241);
+    font-size: 22px;
+    display: flex;
+    z-index: 1000;
+    animation-duration: 0.25s;
+    animation-name: appear;
+    box-shadow: 2px 2px 2px #B2B2B2;
+    overflow: hidden;
+}
+
+.close-btn {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    color: #595959;
+}
+.close-btn:hover {
+    cursor: pointer;
+}

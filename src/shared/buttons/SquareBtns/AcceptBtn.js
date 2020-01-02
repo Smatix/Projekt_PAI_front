@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./styles.css"
+import "./SquareBtn.css"
 
 class AcceptBtn extends Component {
 

@@ -1,25 +1,33 @@
 import React, { Component } from "react";
-import "./FormField.css"
+import "./SelectField.css"
 
-class FormField extends Component {
+class SelectField extends Component {
 
     render() {
         return (
             <div className="form-field-container">
                 <label>{this.props.label}</label>
-                <input
+                <select
                     style={this.props.error ? {border: "1px solid red"} : null}
-                    type={this.props.type}
                     className="form-field"
                     placeholder={this.props.placeholder}
                     onChange={this.props.change}
                     name={this.props.name}
-                    value={this.props.value}
-                />
+                >
+                    {
+                        this.props.options.map(item => {
+                            return (
+                                <option value={item.value}>
+                                    {item.name}
+                                </option>
+                            )
+                        })
+                    }
+                </select>
                 {this.props.error ? <div className="error-msg">{this.props.error}</div> : null}
             </div>
         );
     }
 }
 
-export default FormField;
+export default SelectField;

@@ -9,7 +9,7 @@ class NavBar extends Component {
                 <div className="menu-btn" onClick={this.props.menu}>
                     <i className="fas fa-bars"></i>
                 </div>
-                Zaparkuj Fure
+                Zaparkuj Auto
                 <div className="logout-btn" onClick={this.props.logout}>
                     <i className="fas fa-power-off"></i>
                 </div>
