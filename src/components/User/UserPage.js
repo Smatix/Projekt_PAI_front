@@ -9,6 +9,8 @@ import Reservations from "./Reservations/Reservations";
 import Stayings from "./Stayings/Stayings";
 import Auth from "../../auth/Auth"
 import axios from "axios";
+import config from "../../config";
+import {toast} from "react-toastify";
 
 class UserPage extends Component {
 
@@ -21,8 +23,29 @@ class UserPage extends Component {
     ];
 
     state = {
-        showMenu: true
+        showMenu: true,
+        userData: {
+            name: "",
+            surname: "",
+            email: ""
+        }
     };
+
+    componentDidMount() {
+        axios.get(`${config.url}/api/user/data`, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+            }
+        })
+            .then(res => {
+                this.setState({
+                    userData: res.data,
+                });
+            })
+            .catch(err => {
+                toast.error('Problem z pobraniem danych');
+            })
+    }
 
     handleMenu = () => {
         this.setState(prevState => ({
@@ -46,8 +69,8 @@ class UserPage extends Component {
                 {this.state.showMenu
                     ? <Menu
                         menuList={this.userMenu}
-                        title="Mateusz Suchenia"
-                        subtitle={"xyz@gmail.com"}
+                        title={`${this.state.userData.name} ${this.state.userData.surname}`}
+                        subtitle={this.state.userData.email}
                     />
                     : null}
                 <div className="content">
