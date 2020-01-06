@@ -7,7 +7,16 @@ export const Guard = ({component: Component, ...rest}) => {
         <Route
             {...rest}
             render={props => {
-                if (Auth.isAuth()) {
+                if (Auth.hasRole('ROLE_EMPLOYEE')) {
+                    return <Redirect to={
+                        {
+                            pathname: "/employee",
+                            state: {
+                                from: props.location
+                            }
+                        }
+                    }/>
+                } else if(Auth.hasRole('ROLE_USER')) {
                     return <Redirect to={
                         {
                             pathname: "/user",

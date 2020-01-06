@@ -8,6 +8,7 @@ import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import {ProtectedRoute} from "./auth/ProtectedRoute";
 import {toast} from "react-toastify";
 import {Guard} from "./auth/Guard";
+import EmployeePage from "./components/Employee/EmployeePage";
 
 class App extends Component {
     constructor(props) {
@@ -26,8 +27,11 @@ class App extends Component {
                         <Route path="/login" exact>
                             <Login/>
                         </Route>
-                        <Guard
-                            path="/guard"
+                        <Guard path="/guard"/>
+                        <ProtectedRoute
+                            path="/employee"
+                            component={EmployeePage}
+                            role="ROLE_EMPLOYEE"
                         />
                         <ProtectedRoute
                             path="/user"
