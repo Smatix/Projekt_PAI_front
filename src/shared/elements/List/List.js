@@ -1,10 +1,7 @@
 import React, { Component } from "react";
 import "./List.css"
-import Reservation from "../../list_element/Reservation";
 
 class List extends Component {
-
-
 
     render() {
         return (

@@ -16,14 +16,14 @@ class StarRate extends Component {
         for (let i = 0; i < countOfFilledStars; i++) {
             this.stars[i] = 1;
         }
-        return this.stars.map(el => {
+        return this.stars.map((el, index) => {
             if (el) {
                 return (
-                    <i className="fas fa-star" style={{color: "#ffcc00"}}></i>
+                    <i className="fas fa-star" style={{color: "#ffcc00"}} key={index}></i>
                 );
             } else {
                 return (
-                    <i className="fas fa-star" style={{color: "#fff0b3"}}></i>
+                    <i className="fas fa-star" style={{color: "#fff0b3"}} key={index}></i>
                 );
             }
         })

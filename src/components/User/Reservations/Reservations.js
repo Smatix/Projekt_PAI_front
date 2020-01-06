@@ -2,11 +2,32 @@ import React, { Component } from "react";
 import "./Reservations.css"
 import List from "../../../shared/elements/List/List";
 import Reservation from "../../../shared/list_element/Reservation";
+import axios from "axios";
+import config from "../../../config";
+import {toast} from "react-toastify";
 
 
 class Reservations extends Component {
 
-    tab = [1,2,3,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4];
+    state = {
+        reservations: []
+    };
+
+    componentDidMount() {
+        axios.get(`${config.url}/api/user/reservations/finished`, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+            }
+        })
+            .then(res => {
+                this.setState({
+                    reservations: res.data,
+                });
+            })
+            .catch(err => {
+                toast.error('Problem z pobraniem danych');
+            })
+    }
 
     render() {
         return (
@@ -14,12 +35,10 @@ class Reservations extends Component {
                 <List
                     title="Historia rezerwacji"
                     list={
-                        this.tab.map((el, index) => {
+                        this.state.reservations.map(el => {
                             return <Reservation
-                                key={index}
-                                name={"Mateusz Suchenia"}
-                                email={"xyz@gmail.com"}
-                                time={"12:34:56"}
+                                key={el.id}
+                                element={el}
                             />
                         })
                     }

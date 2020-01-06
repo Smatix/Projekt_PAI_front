@@ -3,18 +3,27 @@
     left: 35%;
     top: 15%;
     width: 400px;
-    min-height: 400px;
+    min-height: 200px;
+    box-sizing: border-box;
     padding: 20px;
     border: 1px solid #595959;
     border-radius: 5px;
     background-color: rgb(241,241,241);
     font-size: 22px;
     display: flex;
-    z-index: 1000;
+    z-index: 2000;
     animation-duration: 0.25s;
     animation-name: appear;
     box-shadow: 2px 2px 2px #B2B2B2;
     overflow: hidden;
+}
+
+@keyframes appear {
+    0% { opacity: 0; }
+    25% { opacity: 0.25; }
+    50% { opacity: 0.5; }
+    75% { opacity: 0.75; }
+    100% { opacity: 1; }
 }
 
 .close-btn {
@@ -23,6 +32,21 @@
     top: 10px;
     color: #595959;
 }
+
 .close-btn:hover {
     cursor: pointer;
+}
+
+.popup-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media only screen and (max-device-width: 992px) {
+    .popup {
+        left: 0;
+        width: 100%;
+    }
 }

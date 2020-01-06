@@ -3,12 +3,30 @@ import "./ListElement.css"
 import AcceptBtn from "../buttons/SquareBtns/AcceptBtn";
 import PrimaryBtn from "../buttons/PrimaryBtns/PrimaryBtn";
 import StarRate from "../elements/StarRate/StartRate";
+import {Link} from "react-router-dom";
 import PopUp from "../elements/PopUp/PopUp";
+import ReservationForm from "../forms/ReservationForm/ReservationForm";
 
 class Parking extends Component {
 
+    state = {
+        openPopup: false
+    };
+
+    openPopUp = () => {
+        this.setState({
+            openPopup: true
+        })
+    };
+
+    closePopUp = () => {
+        this.setState({
+            openPopup: false
+        })
+    };
+
     render() {
-        const {name, number, street, city, rate, pick, priceList} = this.props.element;
+        const {id, name, number, street, city, rate, pick, priceList} = this.props.element;
         return (
             <div
                 className="list-element-container"
@@ -17,7 +35,7 @@ class Parking extends Component {
                 onMouseOut={this.props.mouseOut}
             >
                 <div>
-                    <div style={{fontSize: '0.7em'}}>{name}</div>
+                    <div>{name}</div>
                     <div style={{fontSize: '0.4em'}}>{`ul ${street} ${number}, ${city}`}</div>
                     <div style={{fontSize: '0.3em'}}>
                         <StarRate rate={rate}/>
@@ -42,8 +60,13 @@ class Parking extends Component {
                 <PrimaryBtn
                     text="Rezerwuj"
                     type="blue-btn"
-                    click={(event) => console.log(name)}
+                    click={this.openPopUp}
                 />
+                {this.state.openPopup ?
+                    <PopUp close={this.closePopUp}>
+                        <ReservationForm parking={id}/>
+                    </PopUp>
+                    : null}
             </div>
         );
     }

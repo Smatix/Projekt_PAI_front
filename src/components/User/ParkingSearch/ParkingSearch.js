@@ -12,6 +12,7 @@ import PopUp from "../../../shared/elements/PopUp/PopUp";
 import axios from "axios";
 import config from "../../../config";
 import {toast} from "react-toastify";
+import StarRate from "../../../shared/elements/StarRate/StartRate";
 
 class ParkingSearch extends Component {
 
@@ -76,6 +77,7 @@ class ParkingSearch extends Component {
     getList = () => {
         return this.state.parkings.map((el, index) => {
             return <Parking
+                key={el.id}
                 element={el}
                 mouseOver={() => {this.selectMarker(index)}}
                 mouseOut={() => {this.unselectMarker(index)}}
@@ -216,13 +218,18 @@ class ParkingSearch extends Component {
                         {this.state.parkings.map((el, index) => {
                             return (
                                 <Marker
+                                    key={el.id}
                                     position={[el.lat, el.lng]}
                                     icon={el.pick ? this.icon2 : this.icon}
                                     onMouseOver={() => {this.selectMarker(index)}}
                                     onMouseOut={() => {this.unselectMarker(index)}}
                                 >
                                     <Popup>
-                                        <p>HoHo</p>
+                                        <div>{el.name}</div>
+                                        <div>{`ul ${el.street} ${el.number}, ${el.city}`}</div>
+                                        <div>
+                                            <StarRate rate={el.rate}/>
+                                        </div>
                                     </Popup>
                                 </Marker>
                             )

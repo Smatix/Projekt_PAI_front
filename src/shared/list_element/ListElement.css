@@ -23,6 +23,15 @@
     display: flex;
 }
 
+.list-link {
+    text-decoration: none;
+    color: #294D8C;
+}
+
+.list-link:hover {
+    cursor: pointer;
+}
+
 @media only screen and (max-device-width: 992px) {
     .list-element-container {
         font-size: 22px;
