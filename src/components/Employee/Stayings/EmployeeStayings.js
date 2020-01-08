@@ -1,21 +1,19 @@
 import React, { Component } from "react";
-import "./Stayings.css"
-import List from "../../../shared/elements/List/List";
-import Reservation from "../../../shared/list_element/Reservation";
-import Staying from "../../../shared/list_element/Staying";
 import axios from "axios";
 import config from "../../../config";
 import {toast} from "react-toastify";
+import CurrentStaying from "../../../shared/list_element/CurrentStaying";
+import List from "../../../shared/elements/List/List";
 
 
-class Stayings extends Component {
+class EmployeeStayings extends Component {
 
     state = {
         stayings: []
     };
 
     componentDidMount() {
-        axios.get(`${config.url}/api/user/payments`, {
+        axios.get(`${config.url}/api/employee/stayings`, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('jwt')}`
             }
@@ -34,12 +32,13 @@ class Stayings extends Component {
         return (
             <div className="reservations-container">
                 <List
-                    title="Historia pobytów"
+                    title="Aktualne postoje"
                     list={
                         this.state.stayings.map(el => {
-                            return <Staying
+                            return <CurrentStaying
                                 key={el.id}
                                 element={el}
+                                title={`${el.name} ${el.surname}`}
                             />
                         })
                     }
@@ -49,4 +48,4 @@ class Stayings extends Component {
     }
 }
 
-export default Stayings;
+export default EmployeeStayings;

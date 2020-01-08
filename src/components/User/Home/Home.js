@@ -48,7 +48,6 @@ class Home extends Component {
             }
         })
             .then(res => {
-                console.log(res.data);
                 this.setState({
                     staying: res.data,
                 });
@@ -112,6 +111,7 @@ class Home extends Component {
                         return (
                             <CurrentStaying
                                 key={item.id}
+                                title={item.name}
                                 element={item}
                                 end={() => this.finishStaying(item.id)}
                             />

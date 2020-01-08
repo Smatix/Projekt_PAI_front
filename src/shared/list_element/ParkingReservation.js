@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import "./ListElement.css"
-import AcceptBtn from "../buttons/SquareBtns/AcceptBtn";
-import DiscardBtn from "../buttons/SquareBtns/DiscardBtn";
 
-class ReservationToAccept extends Component {
+class ParkingReservation extends Component {
 
     getVehicleIcon = type => {
         if (type === "car") return (<i className="fas fa-car"></i>);
@@ -18,15 +16,11 @@ class ReservationToAccept extends Component {
                     <div>{`${name} ${surname}`}</div>
                     <div style={{fontSize: '0.5em'}}>{email}</div>
                     <div style={{fontSize: '0.8em'}}>{this.getVehicleIcon(type)}</div>
-                    <div style={{fontSize: '0.5em'}}>{`Data ${expiredDate}`}</div>
-                </div>
-                <div className="buttons-container">
-                    <AcceptBtn click={this.props.accept}/>
-                    <DiscardBtn/>
+                    <div style={{fontSize: '0.5em'}}>{`Data: ${expiredDate}`}</div>
                 </div>
             </div>
         );
     }
 }
 
-export default ReservationToAccept;
+export default ParkingReservation;

@@ -19,7 +19,6 @@ class Login extends Component {
     handleLogin = () =>  {
         axios.post(`${config.url}/api/login`, this.state)
             .then(res => {
-                //console.log(res.data.token);
                 localStorage.setItem('jwt', res.data.token);
                 this.props.history.push("/guard");
             })
@@ -38,7 +37,6 @@ class Login extends Component {
     };
 
     render() {
-        console.log(localStorage.getItem('jwt'));
         return (
             <div className="body-container">
                 <div className="login-container">

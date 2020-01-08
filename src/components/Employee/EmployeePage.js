@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import "../Page.css"
 import {Switch, Route} from "react-router-dom";
 import Page from "../Page";
+import EmployeeHome from "./EmployeeHome/EmployeeHome";
+import EmployeeReservations from "./Reservations/EmployeeReservations";
+import EmployeeStayings from "./Stayings/EmployeeStayings";
 
 
 class EmployeePage extends Component {
@@ -18,12 +21,13 @@ class EmployeePage extends Component {
             <Page menu={this.employeeMenu}>
                 <Switch>
                     <Route path="/employee/" exact>
-                    </Route>
-                    <Route path="/employee/parkings" exact>
+                        <EmployeeHome/>
                     </Route>
                     <Route path="/employee/reservations" exact>
+                        <EmployeeReservations/>
                     </Route>
                     <Route path="/employee/stayings" exact>
+                        <EmployeeStayings/>
                     </Route>
                 </Switch>
             </Page>

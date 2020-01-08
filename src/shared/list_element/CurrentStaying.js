@@ -6,18 +6,17 @@ import Timer from "../elements/Tmer/Timer";
 class CurrentStaying extends Component {
 
     render() {
-        const {id, name, amount, start_timestamp} = this.props.element;
         return (
             <div className="list-element-container">
                 <div>
-                    <div>{name}</div>
-                    <div style={{fontSize: '0.5em'}}>{`Aktualna kwota: ${amount} zł`}</div>
+                    <div>{this.props.title}</div>
+                    <div style={{fontSize: '0.5em'}}>{`Aktualna kwota: ${this.props.element.amount} zł`}</div>
                     <div className="buttons-container">
                         <PrimaryBtn text="Zakończ" type="blue-btn" click={this.props.end}/>
                     </div>
                 </div>
                 <div>
-                    <Timer time={start_timestamp}/>
+                    <Timer time={this.props.element.start_timestamp}/>
                 </div>
             </div>
         );

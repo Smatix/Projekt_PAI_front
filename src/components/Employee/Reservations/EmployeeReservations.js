@@ -1,28 +1,26 @@
 import React, { Component } from "react";
-import "./Stayings.css"
-import List from "../../../shared/elements/List/List";
-import Reservation from "../../../shared/list_element/Reservation";
-import Staying from "../../../shared/list_element/Staying";
 import axios from "axios";
 import config from "../../../config";
 import {toast} from "react-toastify";
+import ParkingReservation from "../../../shared/list_element/ParkingReservation";
+import List from "../../../shared/elements/List/List";
 
 
-class Stayings extends Component {
+class EmployeeReservations extends Component {
 
     state = {
-        stayings: []
+        reservations: []
     };
 
     componentDidMount() {
-        axios.get(`${config.url}/api/user/payments`, {
+        axios.get(`${config.url}/api/employee/reservations/all`, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('jwt')}`
             }
         })
             .then(res => {
                 this.setState({
-                    stayings: res.data,
+                    reservations: res.data,
                 });
             })
             .catch(err => {
@@ -34,10 +32,10 @@ class Stayings extends Component {
         return (
             <div className="reservations-container">
                 <List
-                    title="Historia pobytów"
+                    title="Aktualne rezerwacje"
                     list={
-                        this.state.stayings.map(el => {
-                            return <Staying
+                        this.state.reservations.map(el => {
+                            return <ParkingReservation
                                 key={el.id}
                                 element={el}
                             />
@@ -49,4 +47,4 @@ class Stayings extends Component {
     }
 }
 
-export default Stayings;
+export default EmployeeReservations;
