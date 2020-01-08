@@ -1,12 +1,8 @@
 import React, { Component } from "react";
 import "./ListElement.css"
+import VehicleIcon from "../elements/VehicleIcon";
 
 class ParkingReservation extends Component {
-
-    getVehicleIcon = type => {
-        if (type === "car") return (<i className="fas fa-car"></i>);
-        if (type === "motorbike") return (<i className="fas fa-motorcycle"></i>);
-    };
 
     render() {
         const {id, type, expiredDate, name, surname, email} = this.props.element;
@@ -15,7 +11,7 @@ class ParkingReservation extends Component {
                 <div>
                     <div>{`${name} ${surname}`}</div>
                     <div style={{fontSize: '0.5em'}}>{email}</div>
-                    <div style={{fontSize: '0.8em'}}>{this.getVehicleIcon(type)}</div>
+                    <VehicleIcon type={type}/>
                     <div style={{fontSize: '0.5em'}}>{`Data: ${expiredDate}`}</div>
                 </div>
             </div>

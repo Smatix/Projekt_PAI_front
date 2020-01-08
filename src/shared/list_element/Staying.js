@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./ListElement.css"
 import InvoiceBtn from "../buttons/SquareBtns/InvoiceBtn";
 import TrashBtn from "../buttons/SquareBtns/TrashBtn";
+import VehicleIcon from "../elements/VehicleIcon";
 
 class Staying extends Component {
 
@@ -11,11 +12,6 @@ class Staying extends Component {
         if (status === 3) return "Odrzucona";
     };
 
-    getVehicleIcon = type => {
-        if (type === "car") return (<i className="fas fa-car"></i>);
-        if (type === "motorbike") return (<i className="fas fa-motorcycle"></i>);
-    };
-
     render() {
         const {id, status, amount, parkingName, street, number, city, type} = this.props.element;
         return (
@@ -23,7 +19,7 @@ class Staying extends Component {
                 <div>
                     <div>{parkingName}</div>
                     <div style={{fontSize: '0.4em'}}>{`${street} ${number}, ${city}`}</div>
-                    <div style={{fontSize: '0.8em'}}>{this.getVehicleIcon(type)}</div>
+                    <VehicleIcon type={type}/>
                     <div style={{fontSize: '0.5em'}}>{`Zapłacono: ${amount} zł`}</div>
                     <div style={{fontSize: '0.5em'}}>
                         {`Status ${this.getStatus(status)}`}
