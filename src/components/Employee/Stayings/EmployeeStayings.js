@@ -13,7 +13,7 @@ class EmployeeStayings extends Component {
     };
 
     componentDidMount() {
-        axios.get(`${config.url}/api/employee/stayings`, {
+        axios.get(`${config.url}/api/employee/active/stayings`, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('jwt')}`
             }

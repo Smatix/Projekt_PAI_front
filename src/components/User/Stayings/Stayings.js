@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./Stayings.css"
 import List from "../../../shared/elements/List/List";
-import Reservation from "../../../shared/list_element/Reservation";
 import Staying from "../../../shared/list_element/Staying";
 import axios from "axios";
 import config from "../../../config";
@@ -15,7 +14,7 @@ class Stayings extends Component {
     };
 
     componentDidMount() {
-        axios.get(`${config.url}/api/user/payments`, {
+        axios.get(`${config.url}/api/user/stayings/history`, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('jwt')}`
             }

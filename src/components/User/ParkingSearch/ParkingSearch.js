@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./ParkingSearch.css"
 import { Map, Marker, Popup, TileLayer} from 'react-leaflet'
+import {isMobile} from "react-device-detect";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import marker from "./marker-icon.png";
@@ -17,50 +18,7 @@ import StarRate from "../../../shared/elements/StarRate/StartRate";
 class ParkingSearch extends Component {
 
     centerPosition = [50.895854, 20.641937];
-    state = {
-        mapLoaded: false,
-        listLoaded: false,
-        searching: false,
-        search: "",
-        parkings: [
-            {
-                name: "Parking przy słowaku",
-                street: "Aleja Legionów",
-                number: 0,
-                city: "Kielce",
-                rate: 15,
-                car: 34,
-                price: "free",
-                lat: 50.860179,
-                lng: 20.621567,
-                pick: 0
-            },
-            {
-                name: "Dom",
-                street: "Orkana",
-                number: 40,
-                city: "Kielce",
-                rate: 4,
-                car: 34,
-                price: 2,
-                lat: 50.8958751,
-                lng: 20.6419071,
-                pick: 0
-            },
-            {
-                name: "Pqrking 1a",
-                street: "Orkana",
-                number: 40,
-                city: "Kielce",
-                rate: -7,
-                car: 34,
-                price: 2,
-                lat: 50.893754,
-                lng: 20.641937,
-                pick: 0
-            },
-        ]
-    };
+
     icon = L.icon({
         iconUrl: marker,
         iconSize: [25, 50],
@@ -74,6 +32,24 @@ class ParkingSearch extends Component {
         popupAnchor: [-6, -55],
     });
 
+    constructor(props) {
+        super(props);
+        let displayList = true;
+        let displayMap= true;
+        if (isMobile) {
+            displayMap = false;
+        }
+        this.state = {
+            displayList: displayList,
+            displayMap: displayMap,
+            mapLoaded: false,
+            listLoaded: false,
+            searching: false,
+            search: "",
+            parkings: []
+        };
+    }
+
     getList = () => {
         return this.state.parkings.map((el, index) => {
             return <Parking
@@ -83,6 +59,24 @@ class ParkingSearch extends Component {
                 mouseOut={() => {this.unselectMarker(index)}}
             />
         });
+    };
+
+    displayMap = () => {
+        this.setState(prevState => {
+            return {
+                displayList: false,
+                displayMap: true,
+            }
+        })
+    };
+
+    displayList = () => {
+        this.setState(prevState => {
+            return {
+                displayList: true,
+                displayMap: false,
+            }
+        })
     };
 
     selectMarker = i => {
@@ -189,14 +183,14 @@ class ParkingSearch extends Component {
                     />
                 </div>
                 <div className="map-toggle">
-                    <div className="map-toggle-btn">
+                    <div className="map-toggle-btn" onClick={this.displayList} style={this.state.displayList ? {backgroundColor: '#a6a6a6'} : null}>
                         <i className="fas fa-list"></i>
                     </div>
-                    <div className="map-toggle-btn">
+                    <div className="map-toggle-btn" onClick={this.displayMap} style={this.state.displayMap ? {backgroundColor: '#a6a6a6'} : null}>
                         <i className="fas fa-map"></i>
                     </div>
                 </div>
-                {this.state.searching ?
+                {(this.state.searching && this.state.displayList) ?
                 <div className="parking-list-container">
                     <div className="buttons-container">
                         <i className="fas fa-sort" >Sort</i>
@@ -204,7 +198,7 @@ class ParkingSearch extends Component {
                     </div>
                     {this.state.listLoaded ? this.getList() : <Loader/>}
                 </div> : null}
-                {this.state.searching ?
+                {(this.state.searching && this.state.displayMap) ?
                 <div className="parking-map-container">
                     { this.state.mapLoaded ?
                     <Map

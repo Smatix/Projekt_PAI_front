@@ -6,6 +6,7 @@ import config from "../../../config";
 import {toast} from "react-toastify";
 import CurrentStaying from "../../../shared/list_element/CurrentStaying";
 import CurrentReservation from "../../../shared/list_element/CurrentReservation";
+import StayingToAccept from "../../../shared/list_element/StayingToAccept";
 
 
 
@@ -64,7 +65,7 @@ class Home extends Component {
             }
         })
             .then(res => {
-                toast.success('Rozpoczęto postój');
+                toast.success('Postój czeka na akceptacje');
                 this.loadData();
             })
             .catch(err => {
@@ -108,14 +109,25 @@ class Home extends Component {
                 <List
                     title="Aktualne postoje"
                     list={this.state.staying.map(item => {
-                        return (
-                            <CurrentStaying
-                                key={item.id}
-                                title={item.name}
-                                element={item}
-                                end={() => this.finishStaying(item.id)}
-                            />
-                        )
+                        if (item.status === 2) {
+                            return (
+                                <CurrentStaying
+                                    key={item.id}
+                                    title={item.name}
+                                    element={item}
+                                    end={() => this.finishStaying(item.id)}
+                                />
+                            )
+                        } else {
+                            return (
+                                <StayingToAccept
+                                    key={item.id}
+                                    title={item.name}
+                                    status={item.status}
+                                />
+                            )
+                        }
+
                     })}
                 />
                <List

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {isMobile} from "react-device-detect";
 import "./Page.css"
 import axios from "axios";
 import config from "../config";
@@ -14,14 +15,21 @@ class Page extends Component {
         {name: "Aktualne postoje", icon: "far fa-clock", to: "/employee/stayings"},
     ];
 
-    state = {
-        showMenu: true,
-        userData: {
-            name: "",
-            surname: "",
-            email: ""
+    constructor(props) {
+        super(props);
+        let showMenu = true;
+        if (isMobile) {
+            showMenu = false;
         }
-    };
+        this.state = {
+            showMenu: showMenu,
+            userData: {
+                name: "",
+                surname: "",
+                email: ""
+            }
+        };
+    }
 
     componentDidMount() {
         axios.get(`${config.url}/api/user/data`, {

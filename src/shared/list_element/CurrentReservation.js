@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 import "./ListElement.css"
-import Timer from "../elements/Tmer/Timer";
 import PrimaryBtn from "../buttons/PrimaryBtns/PrimaryBtn";
-import axios from "axios";
-import config from "../../config";
-import {toast} from "react-toastify";
 
 class CurrentReservation extends Component {
 
