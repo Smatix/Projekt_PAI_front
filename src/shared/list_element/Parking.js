@@ -6,22 +6,25 @@ import StarRate from "../elements/StarRate/StartRate";
 import {Link} from "react-router-dom";
 import PopUp from "../elements/PopUp/PopUp";
 import ReservationForm from "../forms/ReservationForm/ReservationForm";
+import ParkingInfo from "../elements/ParkingInfo/ParkingInfo";
 
 class Parking extends Component {
 
     state = {
-        openPopup: false
+        reservationOpenPopup: false,
+        parkingInfoPopUp: false
     };
 
-    openPopUp = () => {
+    openPopUp = (name) => {
         this.setState({
-            openPopup: true
+            [name]: true
         })
     };
 
     closePopUp = () => {
         this.setState({
-            openPopup: false
+            reservationOpenPopup: false,
+            parkingInfoPopUp: false
         })
     };
 
@@ -35,7 +38,9 @@ class Parking extends Component {
                 onMouseOut={this.props.mouseOut}
             >
                 <div>
-                    <div>{name}</div>
+                    <div className="list-link" onClick={() => this.openPopUp('parkingInfoPopUp')}>
+                        {name}
+                    </div>
                     <div style={{fontSize: '0.4em'}}>{`ul ${street} ${number}, ${city}`}</div>
                     <div style={{fontSize: '0.3em'}}>
                         <StarRate rate={rate}/>
@@ -60,11 +65,16 @@ class Parking extends Component {
                 <PrimaryBtn
                     text="Rezerwuj"
                     type="blue-btn"
-                    click={this.openPopUp}
+                    click={() => this.openPopUp('reservationOpenPopup')}
                 />
-                {this.state.openPopup ?
+                {this.state.reservationOpenPopup ?
                     <PopUp close={this.closePopUp}>
                         <ReservationForm parking={id}/>
+                    </PopUp>
+                    : null}
+                {this.state.parkingInfoPopUp ?
+                    <PopUp close={this.closePopUp}>
+                        <ParkingInfo id={id}/>
                     </PopUp>
                     : null}
             </div>
