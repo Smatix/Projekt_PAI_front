@@ -18,6 +18,14 @@ class Auth {
 
     }
 
+    getEmail() {
+        if (this.isAuth()) {
+            const jwtObject = jwt(localStorage.getItem('jwt'));
+            return jwtObject.email;
+        }
+        return {};
+    }
+
     hasRole(role) {
         return this.getRoles().includes(role)
     }

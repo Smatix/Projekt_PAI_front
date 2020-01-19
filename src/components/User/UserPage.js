@@ -6,6 +6,7 @@ import Reservations from "./Reservations/Reservations";
 import Stayings from "./Stayings/Stayings";
 import Page from "../Page";
 import Auth from "../../auth/Auth"
+import ChangeData from "./ChangeData/ChangeData";
 
 class UserPage extends Component {
 
@@ -18,7 +19,7 @@ class UserPage extends Component {
     ];
 
     constructor(props) {
-        super(props)
+        super(props);
         if (Auth.hasRole("ROLE_EMPLOYEE")) {
             this.userMenu.push(
                 {name: "Przełącz na konto pracownika", icon: "fas fa-arrow-circle-right", to: "/employee"}
@@ -41,6 +42,9 @@ class UserPage extends Component {
                     </Route>
                     <Route path="/user/stayings" exact>
                         <Stayings/>
+                    </Route>
+                    <Route path="/user/change-data" exact>
+                        <ChangeData email={Auth.getEmail()}/>
                     </Route>
                 </Switch>
             </Page>
