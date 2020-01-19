@@ -13,6 +13,10 @@ class EmployeeStayings extends Component {
     };
 
     componentDidMount() {
+        this.loadData()
+    }
+
+    loadData = () => {
         axios.get(`${config.url}/api/employee/active/stayings`, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('jwt')}`
@@ -26,7 +30,22 @@ class EmployeeStayings extends Component {
             .catch(err => {
                 toast.error('Problem z pobraniem danych');
             })
-    }
+    };
+
+    finishStaying = id => {
+        axios.patch(`${config.url}/api/employee/stayings/${id}/finish`, null,{
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+            }
+        })
+            .then(res => {
+                toast.success('Zakończono postój');
+                this.loadData();
+            })
+            .catch(err => {
+                toast.error('Problem z zakończeniem parkowania');
+            })
+    };
 
     render() {
         return (
@@ -39,6 +58,7 @@ class EmployeeStayings extends Component {
                                 key={el.id}
                                 element={el}
                                 title={`${el.name} ${el.surname}`}
+                                end={() => this.finishStaying(el.id)}
                             />
                         })
                     }
