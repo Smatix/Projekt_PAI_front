@@ -135,7 +135,14 @@ class Register extends Component {
                 })
                 .catch(err => {
                     if (err.response.status === 400) {
-                        console.log(err.response.data)
+                        this.setState(prevState => {
+                            return {
+                                error: {
+                                    ...prevState.error,
+                                    ...err.response.data
+                                }
+                            }
+                        });
                     }
                     toast.error('Problem z utworzeniem konta');
                 })

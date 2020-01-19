@@ -10,19 +10,30 @@ import SelectField from "../SelectField/SelectField";
 class ReservationForm extends Component {
 
     state = {
-        reservationDate: "",
-        type: "car",
-        parkingId: this.props.parking
+        data: {
+            reservationDate: "",
+            type: "car",
+            parkingId: this.props.parking,
+        },
+        error: {
+            reservationDate: "",
+            type: "",
+            parkingId: ""
+        }
     };
 
     handleChange = event => {
-        this.setState({
-            [event.target.name]: event.target.value
+        const {name, value} = event.target;
+        this.setState(prevState => {
+            return {
+                data: {...prevState.data, [name]: value},
+                error: {...prevState.error, [name]: ""}
+            }
         })
     };
 
     confirmReservation = () => {
-        const data = this.state;
+        const data = this.state.data;
         axios.post(`${config.url}/api/reservations`, data, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('jwt')}`
@@ -32,7 +43,19 @@ class ReservationForm extends Component {
                 toast.success('Rezerwacja dodana');
             })
             .catch(err => {
-                toast.error('Problem z wykonaniem rezerwacji');
+                if (err.response.status === 400) {
+                    console.log(err.response.data);
+                    this.setState(prevState => {
+                        return {
+                            error: {
+                                ...prevState.error,
+                                ...err.response.data
+                            }
+                        }
+                    });
+                } else {
+                    toast.error('Problem z wykonaniem rezerwacji');
+                }
             })
     };
 
@@ -44,8 +67,9 @@ class ReservationForm extends Component {
                     label="Data rezerwacji"
                     type="date"
                     name={"reservationDate"}
-                    value={this.state.date}
+                    value={this.state.data.date}
                     change={this.handleChange}
+                    error={this.state.error.reservationDate}
                 />
                 <SelectField
                     label="Wybierz pojazd"
@@ -55,6 +79,7 @@ class ReservationForm extends Component {
                         {name: "Samochód", "value": "car"},
                         {name: "Motocykl", "value": "motorbike"}
                     ]}
+                    error={this.state.error.type}
                 />
                 <ConfirmBtn
                     text="Rezerwuj"
