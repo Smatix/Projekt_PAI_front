@@ -17,7 +17,7 @@ import StarRate from "../../../shared/elements/StarRate/StartRate";
 
 class ParkingSearch extends Component {
 
-    centerPosition = [50.895854, 20.641937];
+    centerPosition = [50.061053, 19.937462]; // Center of Cracow
 
     icon = L.icon({
         iconUrl: marker,
@@ -192,10 +192,6 @@ class ParkingSearch extends Component {
                 </div>
                 {(this.state.searching && this.state.displayList) ?
                 <div className="parking-list-container">
-                    <div className="buttons-container">
-                        <i className="fas fa-sort" >Sort</i>
-                        <i className="fas fa-filter">Filtr</i>
-                    </div>
                     {this.state.listLoaded ? this.getList() : <Loader/>}
                 </div> : null}
                 {(this.state.searching && this.state.displayMap) ?

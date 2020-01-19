@@ -58,6 +58,10 @@ class Home extends Component {
             })
     }
 
+    handleFinishReservation = (date, id) => {
+
+    }
+
     finishReservation = id => {
         axios.patch(`${config.url}/api/reservations/${id}/finish`, null,{
             headers: {
@@ -69,7 +73,11 @@ class Home extends Component {
                 this.loadData();
             })
             .catch(err => {
-                toast.error('Problem z rozpoczęciem parkowania');
+                if (err.response.status === 400) {
+                    toast.error('To nie jest dzień rezerwacji !');
+                } else {
+                    toast.error('Problem z rozpoczęciem parkowania');
+                }
             })
     };
 

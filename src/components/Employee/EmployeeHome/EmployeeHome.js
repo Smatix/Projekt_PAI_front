@@ -31,7 +31,6 @@ class EmployeeHome extends Component {
             }
         })
             .then(res => {
-                console.log(res.data);
                 this.setState({
                     reservations: res.data,
                 });
@@ -48,7 +47,6 @@ class EmployeeHome extends Component {
             }
         })
             .then(res => {
-                console.log(res.data);
                 this.setState({
                     stayingsToAccept: res.data,
                 });
@@ -65,7 +63,6 @@ class EmployeeHome extends Component {
             }
         })
             .then(res => {
-                console.log(res.data);
                 this.setState({
                     stayingsToFinish: res.data,
                 });
