@@ -6,11 +6,12 @@ class Timer extends Component {
     constructor(props) {
         super(props);
         this.now = new Date();
-        const date = new Date(this.props.time*1000);
+        let differenceInSec = (this.now.getTime()/1000) - this.props.time;
+
         this.state = {
-            hours: Math.abs(this.now.getHours() - date.getHours()),
-            minutes: Math.abs(this.now.getMinutes() - date.getMinutes()),
-            seconds: Math.abs(this.now.getSeconds() - date.getSeconds())
+            hours: Math.floor((differenceInSec/60)/60),
+            minutes: Math.floor((differenceInSec/60)%60),
+            seconds: Math.floor((differenceInSec%60))
         };
     }
 
