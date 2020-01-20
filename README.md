@@ -2,7 +2,8 @@
 
 It is front application write in React.
 
-###How to run
+### How to run
+
 ```
 npm install
 npm start
