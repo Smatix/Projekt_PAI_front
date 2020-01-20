@@ -7,7 +7,7 @@ import VehicleIcon from "../elements/VehicleIcon";
 class Reservation extends Component {
 
     render() {
-        const {id,expiredDate, parkingName, street, number, city, type} = this.props.element;
+        const {expiredDate, parkingName, street, number, city, type} = this.props.element;
         return (
             <div className="list-element-container">
                 <div>

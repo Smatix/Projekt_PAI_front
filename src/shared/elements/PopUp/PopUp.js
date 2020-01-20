@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./PopUp.css"
-import PrimaryBtn from "../../list_element/Parking";
 
 class PopUp extends Component {
 

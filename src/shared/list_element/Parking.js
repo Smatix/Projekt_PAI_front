@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import "./ListElement.css"
-import AcceptBtn from "../buttons/SquareBtns/AcceptBtn";
 import PrimaryBtn from "../buttons/PrimaryBtns/PrimaryBtn";
 import StarRate from "../elements/StarRate/StartRate";
-import {Link} from "react-router-dom";
 import PopUp from "../elements/PopUp/PopUp";
 import ReservationForm from "../forms/ReservationForm/ReservationForm";
 import ParkingInfo from "../elements/ParkingInfo/ParkingInfo";
@@ -50,6 +48,8 @@ class Parking extends Component {
                         {priceList.map(el => {
                             if (el.type === "car") {
                                 return `${el.price} zł/${el.period}${el.unit}`
+                            } else {
+                                return null;
                             }
                         })}
                     </div>
@@ -58,6 +58,8 @@ class Parking extends Component {
                         {priceList.map(el => {
                             if (el.type === "motorbike") {
                                 return `${el.price} zł/${el.period}${el.unit}`
+                            } else {
+                                return null;
                             }
                         })}
                     </div>

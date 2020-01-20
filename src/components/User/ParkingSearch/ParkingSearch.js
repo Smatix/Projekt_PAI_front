@@ -9,7 +9,6 @@ import marker2 from "./marker-icon2.png";
 import Parking from "../../../shared/list_element/Parking";
 import Loader from "../../../shared/elements/Loader/Loader";
 import SearchForm from "../../../shared/forms/SearchForm/SearchForm";
-import PopUp from "../../../shared/elements/PopUp/PopUp";
 import axios from "axios";
 import config from "../../../config";
 import {toast} from "react-toastify";

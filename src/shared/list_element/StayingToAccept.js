@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import "./ListElement.css"
-import PrimaryBtn from "../buttons/PrimaryBtns/PrimaryBtn";
-import Timer from "../elements/Tmer/Timer";
 
 class StayingToAccept extends Component {
 

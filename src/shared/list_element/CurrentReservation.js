@@ -10,7 +10,7 @@ class CurrentReservation extends Component {
     };
 
     render() {
-        const {id, name, expiredDate: date, status} = this.props.element;
+        const {name, expiredDate: date, status} = this.props.element;
         return (
             <div className="list-element-container">
                 <div>

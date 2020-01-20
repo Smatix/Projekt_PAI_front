@@ -58,6 +58,8 @@ class ParkingInfo extends Component {
                                         {`Samochód: ${el.count} miejsc`}
                                     </p>
                                 )
+                            } else {
+                                return null;
                             }
                         })}
                         {p.parkingSpace.map((el, index) => {
@@ -67,6 +69,8 @@ class ParkingInfo extends Component {
                                         {`Motocykl: ${el.count} miejsc`}
                                     </p>
                                 )
+                            } else {
+                                return null;
                             }
                         })}
                         <h2 style={{fontSize: '1em'}}>Cennik</h2>
@@ -78,6 +82,8 @@ class ParkingInfo extends Component {
                                         {`${el.price} zł/${el.period}${el.unit}`}
                                     </p>
                                 )
+                            } else {
+                                return null;
                             }
                         })}
                         <div style={{fontSize: '0.5em'}}>Motocykl:</div>
@@ -88,6 +94,8 @@ class ParkingInfo extends Component {
                                         {`${el.price} zł/${el.period}${el.unit}`}
                                     </p>
                                 )
+                            } else {
+                                return null;
                             }
                         })}
                         <h2 style={{fontSize: '1em'}}>Godziny otwarcia</h2>
