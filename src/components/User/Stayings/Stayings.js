@@ -14,6 +14,10 @@ class Stayings extends Component {
     };
 
     componentDidMount() {
+        this.loadData();
+    }
+
+    loadData = () => {
         axios.get(`${config.url}/api/user/stayings/history`, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('jwt')}`
@@ -27,7 +31,22 @@ class Stayings extends Component {
             .catch(err => {
                 toast.error('Problem z pobraniem danych');
             })
-    }
+    };
+
+    deleteStaying = id => {
+        axios.delete(`${config.url}/api/user/stayings/${id}`, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+            }
+        })
+            .then(res => {
+                toast.success('Usunięto postój');
+                this.loadData();
+            })
+            .catch(err => {
+                toast.error('Problem z usunięciem wpisu');
+            })
+    };
 
     render() {
         return (
@@ -39,6 +58,7 @@ class Stayings extends Component {
                             return <Staying
                                 key={el.id}
                                 element={el}
+                                deleteClick={() => this.deleteStaying(el.id)}
                             />
                         })
                     }

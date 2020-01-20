@@ -14,7 +14,7 @@ class AcceptOrDiscard extends Component {
                 </div>
                 <div className="buttons-container">
                     <AcceptBtn click={this.props.accept}/>
-                    <DiscardBtn click={this.props.discard}/>
+                    {this.props.discard !== undefined ? <DiscardBtn click={this.props.discard}/> : null}
                 </div>
             </div>
         );

@@ -58,10 +58,6 @@ class Home extends Component {
             })
     }
 
-    handleFinishReservation = (date, id) => {
-
-    }
-
     finishReservation = id => {
         axios.patch(`${config.url}/api/reservations/${id}/finish`, null,{
             headers: {

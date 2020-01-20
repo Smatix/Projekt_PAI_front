@@ -14,6 +14,10 @@ class Reservations extends Component {
     };
 
     componentDidMount() {
+        this.loadData();
+    }
+
+    loadData= () => {
         axios.get(`${config.url}/api/user/reservations/finished`, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('jwt')}`
@@ -27,7 +31,22 @@ class Reservations extends Component {
             .catch(err => {
                 toast.error('Problem z pobraniem danych');
             })
-    }
+    };
+
+    deleteReservation = id => {
+        axios.delete(`${config.url}/api/user/reservations/${id}`, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+            }
+        })
+            .then(res => {
+                toast.success('Usunięto rezerwację');
+                this.loadData();
+            })
+            .catch(err => {
+                toast.error('Problem z usunięciem rezerwacji');
+            })
+    };
 
     render() {
         return (
@@ -39,6 +58,7 @@ class Reservations extends Component {
                             return <Reservation
                                 key={el.id}
                                 element={el}
+                                deleteClick={() => this.deleteReservation(el.id)}
                             />
                         })
                     }

@@ -18,7 +18,7 @@ class Staying extends Component {
                 </div>
                 <div className="buttons-container">
                     <InvoiceBtn/>
-                    <TrashBtn/>
+                    <TrashBtn click={this.props.deleteClick}/>
                 </div>
             </div>
         );

@@ -17,7 +17,7 @@ class Reservation extends Component {
                     <div style={{fontSize: '0.5em'}}>{`Data: ${expiredDate}`}</div>
                 </div>
                 <div className="buttons-container">
-                    <TrashBtn/>
+                    <TrashBtn click={this.props.deleteClick}/>
                 </div>
             </div>
         );

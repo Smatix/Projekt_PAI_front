@@ -6,6 +6,7 @@ import config from "../config";
 import {toast} from "react-toastify";
 import Menu from "./Menu/Menu";
 import NavBar from "./NavBar/NavBar";
+import {withRouter} from "react-router-dom";
 
 class Page extends Component {
 
@@ -80,4 +81,4 @@ class Page extends Component {
     }
 }
 
-export default Page;
+export default withRouter(Page);
